@@ -1,0 +1,4 @@
+PHASE 1
+- Camera movement
+- Zoom
+- Tilemap

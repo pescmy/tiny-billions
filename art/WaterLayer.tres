@@ -1,0 +1,12 @@
+[gd_resource type="TileSet" format=3 uid="uid://gi5lu10irlby"]
+
+[ext_resource type="Texture2D" uid="uid://ds668eiwwm10v" path="res://art/tilesets/Water.png" id="1_mr842"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j2gmx"]
+texture = ExtResource("1_mr842")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/1 = SubResource("TileSetAtlasSource_j2gmx")
