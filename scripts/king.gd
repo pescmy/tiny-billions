@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var speed: int = 500
+@export var speed: int = 250
 @onready var navigation_agent: = $NavigationAgent2D
 var clicked_position: Vector2
 
@@ -9,6 +9,7 @@ func _physics_process(_delta: float) -> void:
 	# Wait one physics frame to make sure the NavigationServer is synchronized
 	await get_tree().physics_frame
 	_move_king()
+	
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -27,7 +28,16 @@ func _move_king() -> void:
 		
 	var next_position: Vector2 = navigation_agent.get_next_path_position()
 	var direction: Vector2 = global_position.direction_to(next_position)
-	
+	print(direction)
 	velocity = direction * speed
 	
+	_animate(direction.x, direction.y)
+	
 	move_and_slide()
+
+
+func _animate(x, y) -> void:
+	if x < 0:
+		$Sprite2D.flip_h = true
+	if x > 0:
+		$Sprite2D.flip_h = false
