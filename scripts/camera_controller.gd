@@ -11,9 +11,20 @@ var velocity: Vector2 = Vector2.ZERO
 @export var max_zoom: float = 2.0
 var target_zoom: float = 1.0
 
+@onready var king: CharacterBody2D = $"../Characters/King"
+
 func _process(delta: float) -> void:
 	_move_camera(delta)
 	_zoom(delta)
+	_focus_king()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			target_zoom = clamp(target_zoom + zoom_speed, min_zoom, max_zoom)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			target_zoom = clamp(target_zoom - zoom_speed, min_zoom, max_zoom)
 
 
 func _move_camera(delta) -> void:
@@ -32,12 +43,7 @@ func _zoom(delta) -> void:
 	zoom = zoom.lerp(Vector2(target_zoom, target_zoom), 10.0 * delta)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			target_zoom = clamp(target_zoom + zoom_speed, min_zoom, max_zoom)
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			target_zoom = clamp(target_zoom - zoom_speed, min_zoom, max_zoom)
-
-
-	
+func _focus_king() -> void:
+	var focus = Input.is_action_just_pressed("find_king")
+	if focus:
+		global_position = king.global_position	

@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dng5jd8w1nsv6"]
 
 [ext_resource type="Script" uid="uid://olbw87tkksps" path="res://scripts/camera_controller.gd" id="1_6m72w"]
+[ext_resource type="Script" uid="uid://4ovs1catjlhq" path="res://scripts/world.gd" id="1_bq33v"]
 [ext_resource type="TileSet" uid="uid://s1weaaicu8nk" path="res://art/BGlayer.tres" id="2_v5dby"]
 [ext_resource type="TileSet" uid="uid://gi5lu10irlby" path="res://art/WaterLayer.tres" id="3_t5ptc"]
 [ext_resource type="TileSet" uid="uid://dx1x8du2tkvms" path="res://art/FlatGroundLayer.tres" id="4_bq33v"]
@@ -8,12 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://blvmyghv8pny4" path="res://scenes/world/object.tscn" id="7_bq33v"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bq33v"]
-vertices = PackedVector2Array(293.70313, -209.71875, 299.90625, -229.72656, 1247.3984, -1041.4688, 1292.6719, 1199.1172, 461.3203, 190.40625, 293.65625, -173.71875, 418.3203, 190.39844, -98.671875, 181.90625, -122.390625, -118.13281, -122.359375, -154.13281, 250.65625, -173.77344, -650.40625, -90.60156, -165.39063, -118.140625, -141.67188, 181.86719, -650.4531, -54.601563, 165.13281, 406.14063, 418.28906, 226.39844, 461.28906, 226.40625, 165.09375, 442.14063, -1023.5, 1181.1719, -838.85156, 874.0703, -829.78125, -230.77344, 250.70313, -209.77344, -98.71094, 217.90625, 122.13281, 406.1328, -165.35938, -154.14063, -693.40625, -90.640625, -830.39844, 431.3203, -693.4531, -54.640625, 122.09375, 442.1328, -141.71094, 217.86719)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(5, 4, 6, 7, 8, 9, 10), PackedInt32Array(11, 12, 8, 7, 13, 14), PackedInt32Array(15, 16, 17, 3, 18), PackedInt32Array(17, 4, 3), PackedInt32Array(3, 19, 20), PackedInt32Array(21, 1, 0, 22), PackedInt32Array(23, 7, 6, 16, 15, 24), PackedInt32Array(21, 22, 10, 9, 25), PackedInt32Array(21, 25, 12, 11, 26), PackedInt32Array(27, 21, 26, 28), PackedInt32Array(3, 20, 27, 28, 14, 29), PackedInt32Array(14, 13, 30), PackedInt32Array(23, 24, 29, 30), PackedInt32Array(29, 18, 3), PackedInt32Array(14, 30, 29)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(296.22205, -239.72586, -839.77747, -240.77756, -840.3996, 431.22217, -848.80695, 871.21454, -1041.1031, 1191.0367, 1302.8811, 1209.2068, 1256.9845, -1062.8367)])
 source_geometry_group_name = &""
 
 [node name="World" type="Node2D" unique_id=1496962636]
+script = ExtResource("1_bq33v")
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=2025351622]
 script = ExtResource("1_6m72w")
