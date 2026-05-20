@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b7uwpvfccgett"]
+
+[ext_resource type="Script" uid="uid://b4mqkrlingcp" path="res://scripts/wall.gd" id="1_aj1e4"]
+[ext_resource type="Texture2D" uid="uid://c2qkfrija31dd" path="res://art/buildings/fences.png" id="2_6xofr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d4ok4"]
+size = Vector2(64, 64)
+
+[node name="Building" type="StaticBody2D" unique_id=1579707852]
+script = ExtResource("1_aj1e4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=536271453]
+texture = ExtResource("2_6xofr")
+hframes = 4
+vframes = 4
+frame = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1820769494]
+shape = SubResource("RectangleShape2D_d4ok4")
+
+[node name="BuildRadius" type="Marker2D" parent="." unique_id=1645467201]

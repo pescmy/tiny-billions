@@ -28,7 +28,6 @@ func _move_king() -> void:
 		
 	var next_position: Vector2 = navigation_agent.get_next_path_position()
 	var direction: Vector2 = global_position.direction_to(next_position)
-	print(direction)
 	velocity = direction * speed
 	
 	_animate(direction.x, direction.y)
@@ -36,7 +35,7 @@ func _move_king() -> void:
 	move_and_slide()
 
 
-func _animate(x, y) -> void:
+func _animate(x, _y) -> void:
 	if x < 0:
 		$Sprite2D.flip_h = true
 	if x > 0:

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://5uppdh0v2qqq"]
+
+[ext_resource type="Script" uid="uid://bpcgdpvk1pst7" path="res://scripts/house.gd" id="1_37mxk"]
+[ext_resource type="Texture2D" uid="uid://dbj4vhfx1kjvd" path="res://art/buildings/knights/House/House_Yellow.png" id="1_monst"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d4ok4"]
+size = Vector2(70, 75)
+
+[node name="Building" type="StaticBody2D" unique_id=1579707852]
+script = ExtResource("1_37mxk")
+grid_size = Vector2i(2, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=536271453]
+texture = ExtResource("1_monst")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1820769494]
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_d4ok4")
+
+[node name="BuildRadius" type="Marker2D" parent="." unique_id=1645467201]

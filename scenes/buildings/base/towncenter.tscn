@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://pqvgnqv4iptc"]
+
+[ext_resource type="Script" uid="uid://c5bhsnnnnh7xc" path="res://scripts/towncenter.gd" id="1_dt1kd"]
+[ext_resource type="Texture2D" uid="uid://dnd68iogl50td" path="res://art/buildings/knights/Castle/Castle_Yellow.png" id="1_iq6n6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d4ok4"]
+size = Vector2(224, 104)
+
+[node name="Building" type="StaticBody2D" unique_id=1579707852]
+script = ExtResource("1_dt1kd")
+grid_size = Vector2i(5, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=536271453]
+texture = ExtResource("1_iq6n6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1820769494]
+position = Vector2(0, 28)
+shape = SubResource("RectangleShape2D_d4ok4")
+
+[node name="BuildRadius" type="Marker2D" parent="." unique_id=1645467201]
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=1763871579]
+radius = 100.0
+vertices = PackedVector2Array(126, -71, -120, -71, -140, -50, -131, 88, -81, 112, 80, 109, 132, 85, 138, -10, 142, -53)
+affect_navigation_mesh = true
+carve_navigation_mesh = true

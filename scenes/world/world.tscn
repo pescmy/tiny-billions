@@ -68,5 +68,6 @@ position = Vector2(59, 40)
 
 [node name="King" parent="Characters" unique_id=1401887729 instance=ExtResource("6_t5ptc")]
 position = Vector2(-574, -196)
-collision_layer = 2
 collision_mask = 28
+
+[node name="Buildings" type="Node2D" parent="." unique_id=1179630860]
