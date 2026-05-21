@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://pqvgnqv4iptc"]
 
-[ext_resource type="Script" uid="uid://c5bhsnnnnh7xc" path="res://scripts/towncenter.gd" id="1_dt1kd"]
-[ext_resource type="Texture2D" uid="uid://dnd68iogl50td" path="res://art/buildings/knights/Castle/Castle_Yellow.png" id="1_iq6n6"]
+[ext_resource type="Script" uid="uid://c5bhsnnnnh7xc" path="res://scripts/towncenter.gd" id="1_5fqts"]
+[ext_resource type="Texture2D" uid="uid://dnd68iogl50td" path="res://art/buildings/knights/Castle/Castle_Yellow.png" id="2_kolps"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4ok4"]
 size = Vector2(224, 104)
 
-[node name="Building" type="StaticBody2D" unique_id=1579707852]
-script = ExtResource("1_dt1kd")
+[node name="TownCentre" type="StaticBody2D" unique_id=1579707852]
+script = ExtResource("1_5fqts")
 grid_size = Vector2i(5, 4)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=536271453]
-texture = ExtResource("1_iq6n6")
+texture = ExtResource("2_kolps")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1820769494]
 position = Vector2(0, 28)

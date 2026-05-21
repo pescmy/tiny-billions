@@ -6,10 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4ok4"]
 size = Vector2(64, 64)
 
-[node name="Building" type="StaticBody2D" unique_id=1579707852]
+[node name="Wall" type="StaticBody2D" unique_id=1579707852]
 script = ExtResource("1_aj1e4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=536271453]
+scale = Vector2(3, 3)
 texture = ExtResource("2_6xofr")
 hframes = 4
 vframes = 4
