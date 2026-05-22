@@ -11,3 +11,13 @@ func _ready() -> void:
 	
 	collision.position.x = grid_size.x * 64.0 / 2
 	collision.position.y = grid_size.y * 64.0 / 2
+	
+	var nav_obstacle = $NavigationObstacle2D
+	var w = grid_size.x * 64.0
+	var h = grid_size.y * 64.0
+	nav_obstacle.vertices = PackedVector2Array([
+		Vector2(0, 0),
+		Vector2(w, 0),
+		Vector2(w, h),
+		Vector2(0, h)
+	])

@@ -22,3 +22,8 @@ frame = 12
 shape = SubResource("RectangleShape2D_d4ok4")
 
 [node name="BuildRadius" type="Marker2D" parent="." unique_id=1645467201]
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." unique_id=1494670599]
+vertices = PackedVector2Array(-9, -20, -13, -15, -14, -9, -14, 17, 14, 18, 16, -7, 16, -14, 12, -20)
+affect_navigation_mesh = true
+carve_navigation_mesh = true

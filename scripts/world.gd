@@ -3,7 +3,7 @@ extends Node2D
 
 var mouse_position: Vector2
 var grid_position: Vector2i
-@onready var buildings: Node2D = $Buildings
+@onready var buildings: Node2D = $WorldNavigation/Buildings
 @onready var king = $Characters/King
 var king_position: Vector2
 var ghost: Node2D = null
@@ -42,6 +42,7 @@ func place_building() -> void:
 		
 		delete_ghost_building()
 		create_ghost_building(BuildManager.current_build_scene)
+		$WorldNavigation.bake_navigation_polygon.call_deferred()
 	else:
 		print("Can't build here, space is occupied!")
 		#TODO
