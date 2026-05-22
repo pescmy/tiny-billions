@@ -4,16 +4,21 @@ extends Node2D
 var mouse_position: Vector2
 var grid_position: Vector2i
 @onready var buildings: Node2D = $Buildings
+@onready var king = $Characters/King
+var king_position: Vector2
 var ghost: Node2D = null
+
 
 func _ready() -> void:
 	$WorldNavigation.bake_navigation_polygon()
 	BuildManager.building_selected.connect(_on_building_selected)
 	BuildManager.exit_build_mode.connect(_on_exit_build_mode)
+	king.king_position_changed.connect(_on_king_position_changed)
 
 
 func _process(_delta: float) -> void:
 	check_mouse_position()
+	$GridVisual.king_position = king.global_position
 	if ghost:
 		ghost.global_position = GridHelper.grid_to_world(grid_position)
 
@@ -29,13 +34,12 @@ func place_building() -> void:
 	var world_position = GridHelper.grid_to_world(grid_position)
 	var building_type: String = BuildManager.current_building_type
 	
-	if BuildManager.can_place_building(grid_position):
+	if BuildManager.can_place_building(grid_position) and BuildManager.in_king_radius(king_position, mouse_position):
 		new_building.global_position = world_position
 		buildings.add_child(new_building)
 		
 		BuildManager.mark_cell_occupied(grid_position, building_type)
 		
-		print("world_position" + str(world_position))
 		delete_ghost_building()
 		create_ghost_building(BuildManager.current_build_scene)
 	else:
@@ -47,7 +51,6 @@ func place_building() -> void:
 func create_ghost_building(building) -> void:
 	delete_ghost_building()
 	ghost = building.instantiate()
-	var world_position = GridHelper.grid_to_world(grid_position)
 	
 	ghost.modulate = Color(1, 1, 1, 0.5)
 	add_child(ghost)
@@ -65,6 +68,12 @@ func _on_building_selected(scene: PackedScene) -> void:
 
 func _on_exit_build_mode() -> void:
 	delete_ghost_building()
+
+
+func _on_king_position_changed(king_global_position) -> void:
+	king_position = king_global_position
+	#print(king_position)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and BuildManager.in_build_mode:

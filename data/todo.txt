@@ -1,4 +1,5 @@
-PHASE 1
-- Camera movement
-- Zoom
-- Tilemap
+
+
+
+- restrict building to only place on ground layers
+- need to store objects in dictionary in the same was buildings work to block invalid placements

@@ -65,9 +65,8 @@ position = Vector2(197, 416)
 [node name="Characters" type="Node2D" parent="." unique_id=678179957]
 
 [node name="King" parent="Characters" unique_id=1401887729 instance=ExtResource("6_t5ptc")]
-position = Vector2(-445, -187)
 collision_mask = 28
 
-[node name="Buildings" type="Node2D" parent="." unique_id=1179630860]
-
 [node name="GridVisual" parent="." unique_id=1307838698 instance=ExtResource("11_5qq27")]
+
+[node name="Buildings" type="Node2D" parent="." unique_id=1179630860]

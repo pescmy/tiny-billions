@@ -13,15 +13,16 @@ var building_size: Dictionary = {
 	"wall": Vector2i(1, 1)
 }
 
-
 var current_building_type: String = ""
 var current_building_size: Vector2i = Vector2i(1, 1)
-
 
 var occupied_cells: Dictionary = {}
 
 var in_build_mode: bool = false
+var build_in_king_radius: bool = false
 var current_build_scene: PackedScene = null
+
+var king_global_position: Vector2 = Vector2.ZERO
 
 signal building_selected(scene: PackedScene)
 signal exit_build_mode
@@ -32,13 +33,23 @@ func is_cell_occupied(grid_position: Vector2i) -> bool:
 
 
 func can_place_building(grid_position) -> bool:
-	for x in current_building_size.x:
-		for y in current_building_size.y:
-			var cell = grid_position + Vector2i(x, y)
-			if occupied_cells.has(cell):
-				return false
+	if build_in_king_radius:
+		for x in current_building_size.x:
+			for y in current_building_size.y:
+				var cell = grid_position + Vector2i(x, y)
+				if occupied_cells.has(cell):
+					return false
 	return true
 
+
+func in_king_radius(king_position: Vector2, mouse_position: Vector2) -> bool:
+	var allowed_distance: float = 500.0
+	
+	if king_position.distance_to(mouse_position) <= allowed_distance:
+		build_in_king_radius = true
+		return true
+	return false
+	
 
 func mark_cell_occupied(grid_position, building) -> void:
 	for x in current_building_size.x:
