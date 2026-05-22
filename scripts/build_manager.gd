@@ -23,6 +23,9 @@ var occupied_cells: Dictionary = {}
 var in_build_mode: bool = false
 var current_build_scene: PackedScene = null
 
+signal building_selected(scene: PackedScene)
+signal exit_build_mode
+
 
 func is_cell_occupied(grid_position: Vector2i) -> bool:
 	return occupied_cells.has(grid_position)
@@ -52,19 +55,23 @@ func _unhandled_input(event: InputEvent) -> void:
 				current_building_type = "town_centre"
 				current_building_size = building_size["town_centre"]
 				in_build_mode = true
+				building_selected.emit(current_build_scene)
 
 			KEY_2:
 				current_build_scene = buildings["house"]
 				current_building_type = "house"
 				current_building_size = building_size["house"]
 				in_build_mode = true
+				building_selected.emit(current_build_scene)
 
 			KEY_3:
 				current_build_scene = buildings["wall"]
 				current_building_type = "wall"
 				current_building_size = building_size["wall"]
 				in_build_mode = true
+				building_selected.emit(current_build_scene)
 
 			KEY_ESCAPE:
 				current_build_scene = null
 				in_build_mode = false
+				exit_build_mode.emit()

@@ -4,23 +4,24 @@ extends Node2D
 var mouse_position: Vector2
 var grid_position: Vector2i
 @onready var buildings: Node2D = $Buildings
-
-
+var ghost: Node2D = null
 
 func _ready() -> void:
 	$WorldNavigation.bake_navigation_polygon()
+	BuildManager.building_selected.connect(_on_building_selected)
+	BuildManager.exit_build_mode.connect(_on_exit_build_mode)
 
 
 func _process(_delta: float) -> void:
 	check_mouse_position()
-
+	if ghost:
+		ghost.global_position = GridHelper.grid_to_world(grid_position)
 
 
 func check_mouse_position() -> void:
 	if BuildManager.in_build_mode:
 		mouse_position = get_global_mouse_position()
 		grid_position = GridHelper.world_to_grid(mouse_position)
-
 
 
 func place_building() -> void:
@@ -35,15 +36,39 @@ func place_building() -> void:
 		BuildManager.mark_cell_occupied(grid_position, building_type)
 		
 		print("world_position" + str(world_position))
+		delete_ghost_building()
+		create_ghost_building(BuildManager.current_build_scene)
 	else:
 		print("Can't build here, space is occupied!")
 		#TODO
 		#add UI rather than print
 
 
+func create_ghost_building(building) -> void:
+	delete_ghost_building()
+	ghost = building.instantiate()
+	var world_position = GridHelper.grid_to_world(grid_position)
+	
+	ghost.modulate = Color(1, 1, 1, 0.5)
+	add_child(ghost)
+
+
+func delete_ghost_building() -> void:
+	if ghost:
+		ghost.queue_free()
+		ghost = null
+
+
+func _on_building_selected(scene: PackedScene) -> void:
+	create_ghost_building(scene)
+
+
+func _on_exit_build_mode() -> void:
+	delete_ghost_building()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and BuildManager.in_build_mode:
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
 				place_building()
+				
