@@ -23,6 +23,7 @@ var build_in_king_radius: bool = false
 var current_build_scene: PackedScene = null
 
 var king_global_position: Vector2 = Vector2.ZERO
+var allowed_distance: float = 500.0
 
 signal building_selected(scene: PackedScene)
 signal exit_build_mode
@@ -43,7 +44,7 @@ func can_place_building(grid_position) -> bool:
 
 
 func in_king_radius(king_position: Vector2, mouse_position: Vector2) -> bool:
-	var allowed_distance: float = 500.0
+
 	
 	if king_position.distance_to(mouse_position) <= allowed_distance:
 		build_in_king_radius = true

@@ -11,9 +11,12 @@ var ghost: Node2D = null
 
 func _ready() -> void:
 	$WorldNavigation.bake_navigation_polygon()
+	king_position = king.global_position
+	
 	BuildManager.building_selected.connect(_on_building_selected)
 	BuildManager.exit_build_mode.connect(_on_exit_build_mode)
 	king.king_position_changed.connect(_on_king_position_changed)
+
 
 
 func _process(_delta: float) -> void:

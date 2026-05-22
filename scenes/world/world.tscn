@@ -10,8 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://m4ahwryy7ui" path="res://scenes/buildings/grid_visual.tscn" id="11_5qq27"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bq33v"]
-vertices = PackedVector2Array(346.67188, -181.67969, 514.3281, 182.47656, 471.32813, 182.4375, -45.65625, 173.96094, -69.390625, -126.0625, -69.35156, -162.0625, 303.67188, -181.71875, -597.40625, -98.546875, -112.390625, -126.10156, -88.65625, 173.92188, -597.4375, -62.546875, 218.14063, 398.21094, 471.28906, 218.4375, 514.28906, 218.47656, 1367.6797, 1113.2188, 218.10156, 434.21094, 1306.3516, -1163.7109, 346.71094, -217.67969, 370.35156, -317.40625, -989.5, 1102.1172, -1004.22656, 801.96094, -813.8906, 800.1406, -45.703125, 209.96094, 175.14063, 398.15625, 366.1328, -1157.7266, -794.8281, -346.47656, 303.71094, -217.71875, -112.35156, -162.10156, -640.40625, -98.60156, -640.4375, -62.601563, -88.703125, 209.92188, 175.10156, 434.15625)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6), PackedInt32Array(7, 8, 4, 3, 9, 10), PackedInt32Array(11, 12, 13, 14, 15), PackedInt32Array(1, 16, 14, 13), PackedInt32Array(17, 18, 16, 1, 0), PackedInt32Array(19, 20, 21, 14), PackedInt32Array(22, 3, 2, 12, 11, 23), PackedInt32Array(18, 24, 16), PackedInt32Array(25, 18, 17, 26), PackedInt32Array(25, 26, 6, 5, 27), PackedInt32Array(25, 27, 8, 7, 28), PackedInt32Array(21, 25, 28, 29), PackedInt32Array(21, 29, 10, 9, 30), PackedInt32Array(15, 14, 21, 31), PackedInt32Array(31, 21, 30, 22, 23)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(360.3035, -327.6666, -804.67004, -356.74512, -823.73193, 790.2378, -1014.7337, 792.0609, -999.02997, 1112.0756, 1377.9607, 1123.2761, 1316.0873, -1173.7821, 356.08118, -1167.6709)])
 source_geometry_group_name = &""
 
@@ -70,6 +68,7 @@ rotation = 0.0009257914
 [node name="Characters" type="Node2D" parent="." unique_id=678179957]
 
 [node name="King" parent="Characters" unique_id=1401887729 instance=ExtResource("6_t5ptc")]
+position = Vector2(266, -106)
 collision_mask = 28
 
 [node name="GridVisual" parent="." unique_id=1307838698 instance=ExtResource("11_5qq27")]
