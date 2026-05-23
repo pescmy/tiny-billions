@@ -11,12 +11,15 @@ var velocity: Vector2 = Vector2.ZERO
 @export var max_zoom: float = 2.0
 var target_zoom: float = 1.0
 
+const EDGE_MARGIN: int = 20
+
 @onready var king: CharacterBody2D = $"../Characters/King"
 
 func _process(delta: float) -> void:
 	_move_camera(delta)
 	_zoom(delta)
 	_focus_king()
+	_edge_scrolling(delta)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -47,3 +50,24 @@ func _focus_king() -> void:
 	var focus = Input.is_action_just_pressed("find_king")
 	if focus:
 		global_position = king.global_position	
+
+
+func _edge_scrolling(delta) -> void:
+	var mouse_position = get_viewport().get_mouse_position()
+	var camera_size = get_viewport().size
+
+	var input_dir := Vector2.ZERO
+	
+	if mouse_position.x < EDGE_MARGIN:
+		input_dir.x = -1
+	elif mouse_position.x > camera_size.x - EDGE_MARGIN:
+		input_dir.x = 1
+		
+	if mouse_position.y < EDGE_MARGIN:
+		input_dir.y = -1
+	elif mouse_position.y > camera_size.y - EDGE_MARGIN:
+		input_dir.y = 1
+	
+	var target_velocity = input_dir * base_speed
+	velocity = velocity.lerp(target_velocity, acceleration * delta)
+	position += velocity * delta
