@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b7uwpvfccgett"]
 
-[ext_resource type="Script" uid="uid://b4mqkrlingcp" path="res://scripts/wall.gd" id="1_aj1e4"]
+[ext_resource type="Script" uid="uid://b4mqkrlingcp" path="res://scripts/buildings/wall.gd" id="1_aj1e4"]
 [ext_resource type="Texture2D" uid="uid://c2qkfrija31dd" path="res://art/buildings/fences.png" id="2_6xofr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4ok4"]

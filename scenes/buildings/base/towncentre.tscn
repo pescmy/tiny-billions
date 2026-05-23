@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://pqvgnqv4iptc"]
 
-[ext_resource type="Script" uid="uid://c5bhsnnnnh7xc" path="res://scripts/towncenter.gd" id="1_5fqts"]
+[ext_resource type="Script" uid="uid://c5bhsnnnnh7xc" path="res://scripts/buildings/towncenter.gd" id="1_5fqts"]
 [ext_resource type="Texture2D" uid="uid://dnd68iogl50td" path="res://art/buildings/knights/Castle/Castle_Yellow.png" id="2_kolps"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4ok4"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://do6gcpqj3pwte"]
 
 [ext_resource type="Texture2D" uid="uid://cbb6jhrp7ny00" path="res://art/sprites/knights/Warrior/Warrior_Idle.png" id="1_tnbef"]
-[ext_resource type="Script" uid="uid://ck371k8q61oui" path="res://scripts/king.gd" id="1_v7dht"]
+[ext_resource type="Script" uid="uid://ck371k8q61oui" path="res://scripts/characters/king.gd" id="1_v7dht"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7dht"]
 radius = 12.0

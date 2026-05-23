@@ -44,12 +44,14 @@ func can_place_building(grid_position) -> bool:
 
 
 func in_king_radius(king_position: Vector2, mouse_position: Vector2) -> bool:
-
+	king_global_position = king_position 
 	
 	if king_position.distance_to(mouse_position) <= allowed_distance:
 		build_in_king_radius = true
 		return true
-	return false
+	else:
+		build_in_king_radius = false
+		return false
 	
 
 func mark_cell_occupied(grid_position, building) -> void:

@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	_move_camera(delta)
 	_zoom(delta)
 	_focus_king()
-	_edge_scrolling(delta)
+	#_edge_scrolling(delta)
 
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://5uppdh0v2qqq"]
 
-[ext_resource type="Script" uid="uid://bpcgdpvk1pst7" path="res://scripts/house.gd" id="1_37mxk"]
+[ext_resource type="Script" uid="uid://bpcgdpvk1pst7" path="res://scripts/buildings/house.gd" id="1_37mxk"]
 [ext_resource type="Texture2D" uid="uid://dbj4vhfx1kjvd" path="res://art/buildings/knights/House/House_Yellow.png" id="1_monst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4ok4"]

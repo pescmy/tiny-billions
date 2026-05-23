@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bc4r7ahkouudj"]
+
+[ext_resource type="Script" uid="uid://umh1eb3lvx66" path="res://scripts/ui/debug.gd" id="1_b0p14"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=2104055834]
+
+[node name="Debug" type="Control" parent="." unique_id=929893245]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_b0p14")
+
+[node name="MarginContainer" type="MarginContainer" parent="Debug" unique_id=236201307]
+layout_mode = 1
+offset_right = 177.0
+offset_bottom = 116.0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug/MarginContainer" unique_id=100034249]
+layout_mode = 2
+
+[node name="BuildMode" type="Label" parent="Debug/MarginContainer/VBoxContainer" unique_id=2118579142]
+layout_mode = 2
+text = "Build Mode: "
+
+[node name="BuildValidity" type="Label" parent="Debug/MarginContainer/VBoxContainer" unique_id=1078581672]
+layout_mode = 2
+text = "Build Validity: Yes"
+
+[node name="KingPosition" type="Label" parent="Debug/MarginContainer/VBoxContainer" unique_id=1102300045]
+layout_mode = 2
+text = "King Position: (0 ,0)"
+
+[node name="MouseGridPosition" type="Label" parent="Debug/MarginContainer/VBoxContainer" unique_id=1786035816]
+layout_mode = 2
+text = "Mouse Grid Position: "
