@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GridHelper="*uid://dvfr565l25ee2"
 BuildManager="*uid://c3ec26tewlkjy"
+GameManager="*uid://38liqtbhfl2v"
 
 [display]
 

@@ -1,4 +1,5 @@
 extends Node2D
+#singleton
 
 const tile_size: int = 64
 

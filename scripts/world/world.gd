@@ -37,7 +37,7 @@ func place_building() -> void:
 	var world_position = GridHelper.grid_to_world(grid_position)
 	var building_type: String = BuildManager.current_building_type
 	
-	if BuildManager.can_place_building(grid_position) and BuildManager.in_king_radius(king_position, mouse_position):
+	if BuildManager.can_place_building(grid_position) and BuildManager.in_king_radius(king_position, mouse_position) and GameManager.spend_gold(BuildManager.current_building_cost):
 		new_building.global_position = world_position
 		buildings.add_child(new_building)
 		
@@ -47,7 +47,7 @@ func place_building() -> void:
 		create_ghost_building(BuildManager.current_build_scene)
 		$WorldNavigation.bake_navigation_polygon.call_deferred()
 	else:
-		print("Can't build here, space is occupied!")
+		print("Can't build here: Missing funds, out of radius, or tiles occupied!")
 		#TODO
 		#add UI rather than print
 

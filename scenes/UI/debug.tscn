@@ -41,3 +41,7 @@ text = "King Position: (0 ,0)"
 [node name="MouseGridPosition" type="Label" parent="Debug/MarginContainer/VBoxContainer" unique_id=1786035816]
 layout_mode = 2
 text = "Mouse Grid Position: "
+
+[node name="Gold" type="Label" parent="Debug/MarginContainer/VBoxContainer" unique_id=1566210482]
+layout_mode = 2
+text = "Gold: "

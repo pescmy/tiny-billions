@@ -1,4 +1,5 @@
 extends Node
+#singleton
 
 var buildings: Dictionary = {
 	"town_centre": preload("res://scenes/buildings/base/towncentre.tscn"),
@@ -13,8 +14,16 @@ var building_size: Dictionary = {
 	"wall": Vector2i(1, 1)
 }
 
+var building_cost: Dictionary = {
+	"town_centre": 9999,
+	"house": 100,
+	"wall": 5
+}
+
+
 var current_building_type: String = ""
 var current_building_size: Vector2i = Vector2i(1, 1)
+var current_building_cost: int
 
 var occupied_cells: Dictionary = {}
 
@@ -33,13 +42,22 @@ func is_cell_occupied(grid_position: Vector2i) -> bool:
 	return occupied_cells.has(grid_position)
 
 
-func can_place_building(grid_position) -> bool:
-	if build_in_king_radius:
-		for x in current_building_size.x:
-			for y in current_building_size.y:
-				var cell = grid_position + Vector2i(x, y)
-				if occupied_cells.has(cell):
-					return false
+func can_place_building(grid_position: Vector2i) -> bool:
+	# Does the player have enough gold? (Safe check, doesn't spend!)
+	if not GameManager.has_enough_gold(current_building_cost):
+		return false
+		
+	# Is the king close enough?
+	if not build_in_king_radius:
+		return false
+		
+	# Are any target grid cells blocked?
+	for x in current_building_size.x:
+		for y in current_building_size.y:
+			var cell = grid_position + Vector2i(x, y)
+			if occupied_cells.has(cell):
+				return false # Blocked!
+				
 	return true
 
 
@@ -68,6 +86,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				current_build_scene = buildings["town_centre"]
 				current_building_type = "town_centre"
 				current_building_size = building_size["town_centre"]
+				current_building_cost = building_cost["town_centre"]
 				in_build_mode = true
 				building_selected.emit(current_build_scene)
 
@@ -75,6 +94,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				current_build_scene = buildings["house"]
 				current_building_type = "house"
 				current_building_size = building_size["house"]
+				current_building_cost = building_cost["house"]
 				in_build_mode = true
 				building_selected.emit(current_build_scene)
 
@@ -82,6 +102,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				current_build_scene = buildings["wall"]
 				current_building_type = "wall"
 				current_building_size = building_size["wall"]
+				current_building_cost = building_cost["wall"]
 				in_build_mode = true
 				building_selected.emit(current_build_scene)
 
