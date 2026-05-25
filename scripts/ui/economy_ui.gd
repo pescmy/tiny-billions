@@ -13,5 +13,5 @@ func update_labels() -> void:
 	gold_label.text = "Gold: " + str(GameManager.gold)
 
 
-func on_gold_changed() -> void:
+func on_gold_changed(_amount) -> void:
 	update_labels()

@@ -47,7 +47,7 @@ func place_building() -> void:
 		create_ghost_building(BuildManager.current_build_scene)
 		$WorldNavigation.bake_navigation_polygon.call_deferred()
 	else:
-		print("Can't build here: Missing funds, out of radius, or tiles occupied!")
+		pass
 		#TODO
 		#add UI rather than print
 

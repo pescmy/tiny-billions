@@ -34,6 +34,8 @@ var current_build_scene: PackedScene = null
 var king_global_position: Vector2 = Vector2.ZERO
 var allowed_distance: float = 500.0
 
+var invalid_reason: String = ""
+
 signal building_selected(scene: PackedScene)
 signal exit_build_mode
 
@@ -45,10 +47,14 @@ func is_cell_occupied(grid_position: Vector2i) -> bool:
 func can_place_building(grid_position: Vector2i) -> bool:
 	# Does the player have enough gold? (Safe check, doesn't spend!)
 	if not GameManager.has_enough_gold(current_building_cost):
+		invalid_reason = "Not enough gold"
+		print(invalid_reason)
 		return false
 		
 	# Is the king close enough?
 	if not build_in_king_radius:
+		invalid_reason = "King not close enough"
+		print(invalid_reason)
 		return false
 		
 	# Are any target grid cells blocked?
@@ -56,6 +62,8 @@ func can_place_building(grid_position: Vector2i) -> bool:
 		for y in current_building_size.y:
 			var cell = grid_position + Vector2i(x, y)
 			if occupied_cells.has(cell):
+				invalid_reason = "Cell is occupied"
+				print(invalid_reason)
 				return false # Blocked!
 				
 	return true
