@@ -11,7 +11,7 @@ func _ready() -> void:
 	hide()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_labels()
 
 
