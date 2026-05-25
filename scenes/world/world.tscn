@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://gi5lu10irlby" path="res://art/WaterLayer.tres" id="3_t5ptc"]
 [ext_resource type="TileSet" uid="uid://dx1x8du2tkvms" path="res://art/FlatGroundLayer.tres" id="4_bq33v"]
 [ext_resource type="PackedScene" uid="uid://do6gcpqj3pwte" path="res://scenes/player/king.tscn" id="6_t5ptc"]
+[ext_resource type="PackedScene" uid="uid://pqvgnqv4iptc" path="res://scenes/buildings/base/towncentre.tscn" id="7_5qq27"]
 [ext_resource type="PackedScene" uid="uid://blvmyghv8pny4" path="res://scenes/world/object.tscn" id="7_bq33v"]
 [ext_resource type="PackedScene" uid="uid://bc4r7ahkouudj" path="res://scenes/ui/debug_ui.tscn" id="9_1yooq"]
 [ext_resource type="PackedScene" uid="uid://bju7lt3vbaa8f" path="res://scenes/ui/economy_ui.tscn" id="10_gb53w"]
@@ -69,10 +70,13 @@ position = Vector2(197, 416)
 [node name="Buildings" type="Node2D" parent="WorldNavigation" unique_id=1179630860]
 rotation = 0.0009257914
 
+[node name="TownCentre" parent="WorldNavigation/Buildings" unique_id=1579707852 instance=ExtResource("7_5qq27")]
+position = Vector2(879, 236)
+
 [node name="Characters" type="Node2D" parent="." unique_id=678179957]
 
 [node name="King" parent="Characters" unique_id=1401887729 instance=ExtResource("6_t5ptc")]
-position = Vector2(266, -106)
+position = Vector2(586, -241)
 collision_mask = 28
 
 [node name="GridVisual" parent="." unique_id=1307838698 instance=ExtResource("11_5qq27")]

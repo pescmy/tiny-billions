@@ -25,3 +25,9 @@ shape = SubResource("RectangleShape2D_d4ok4")
 vertices = PackedVector2Array(126, -71, -120, -71, -140, -50, -131, 88, -81, 112, 80, 109, 132, 85, 138, -10, 142, -53)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
+
+[node name="IncomeTimer" type="Timer" parent="." unique_id=578339275]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="IncomeTimer" to="." method="_on_income_timer_timeout"]

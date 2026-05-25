@@ -3,6 +3,9 @@ extends StaticBody2D
 @export var grid_size: Vector2i = Vector2i(1, 1)
 @onready var sprite = $Sprite2D
 @onready var collision = $CollisionShape2D
+
+var floating_text: PackedScene = preload("res://scenes/ui/floating_text.tscn")
+
 var gold_produced: int = 100
 
 
@@ -26,3 +29,12 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	GameManager.add_gold(gold_produced)
+	spawn_gold_popup()
+
+
+func spawn_gold_popup() -> void:
+	var popup = floating_text.instantiate()
+	popup.text = "+ " + str(gold_produced) + " Gold"
+	popup.global_position = global_position + Vector2(20, 0)
+	get_parent().add_child(popup)
+	

@@ -16,7 +16,7 @@ var building_size: Dictionary = {
 
 var building_cost: Dictionary = {
 	"town_centre": 9999,
-	"house": 100,
+	"house": 5,
 	"wall": 5
 }
 
