@@ -7,7 +7,8 @@
 [ext_resource type="TileSet" uid="uid://dx1x8du2tkvms" path="res://art/FlatGroundLayer.tres" id="4_bq33v"]
 [ext_resource type="PackedScene" uid="uid://do6gcpqj3pwte" path="res://scenes/player/king.tscn" id="6_t5ptc"]
 [ext_resource type="PackedScene" uid="uid://blvmyghv8pny4" path="res://scenes/world/object.tscn" id="7_bq33v"]
-[ext_resource type="PackedScene" uid="uid://bc4r7ahkouudj" path="res://scenes/UI/debug.tscn" id="9_1yooq"]
+[ext_resource type="PackedScene" uid="uid://bc4r7ahkouudj" path="res://scenes/ui/debug_ui.tscn" id="9_1yooq"]
+[ext_resource type="PackedScene" uid="uid://bju7lt3vbaa8f" path="res://scenes/ui/economy_ui.tscn" id="10_gb53w"]
 [ext_resource type="PackedScene" uid="uid://m4ahwryy7ui" path="res://scenes/buildings/grid_visual.tscn" id="11_5qq27"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bq33v"]
@@ -76,4 +77,6 @@ collision_mask = 28
 
 [node name="GridVisual" parent="." unique_id=1307838698 instance=ExtResource("11_5qq27")]
 
-[node name="Debug" parent="." unique_id=929893245 instance=ExtResource("9_1yooq")]
+[node name="Debug" parent="." unique_id=2104055834 instance=ExtResource("9_1yooq")]
+
+[node name="Economy" parent="." unique_id=1474835136 instance=ExtResource("10_gb53w")]

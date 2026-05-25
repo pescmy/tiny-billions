@@ -3,7 +3,7 @@ extends StaticBody2D
 @export var grid_size: Vector2i = Vector2i(1, 1)
 @onready var sprite = $Sprite2D
 @onready var collision = $CollisionShape2D
-var gold_produced: int = 5
+var gold_produced: int = 100
 
 
 func _ready() -> void:

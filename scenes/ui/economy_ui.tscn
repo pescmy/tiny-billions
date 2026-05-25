@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bju7lt3vbaa8f"]
+
+[ext_resource type="Script" uid="uid://buk24nd6vofcm" path="res://scripts/ui/economy_ui.gd" id="1_lcpy7"]
+
+[node name="Economy" type="CanvasLayer" unique_id=1474835136]
+
+[node name="Control" type="Control" parent="." unique_id=723551051]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("1_lcpy7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=290311856]
+custom_minimum_size = Vector2(320, 32)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Gold" type="Label" parent="Control/HBoxContainer" unique_id=200240423]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Gold: 0"

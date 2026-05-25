@@ -18,7 +18,7 @@ func has_enough_gold(amount: int) -> bool:
 
 
 func spend_gold(amount: int) -> bool:
-	if gold > amount:
+	if gold < amount:
 		print("Nah bro, you poor")
 		return false
 		
