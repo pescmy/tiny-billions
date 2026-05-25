@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func flash_floating_label() -> void:
 	var tween = create_tween().set_parallel()
-	tween.tween_property(self, "position.y", position.y, duration)
+	tween.tween_property(self, "position:y", position.y - 40, duration)
 	# 2. Fade out the opacity (modulate alpha)
 	tween.tween_property(self, "modulate:a", 0.0, duration)
 	
