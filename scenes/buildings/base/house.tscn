@@ -25,3 +25,9 @@ shape = SubResource("RectangleShape2D_d4ok4")
 vertices = PackedVector2Array(-12, -67, -42, -39, -52, 29, -44, 66, 42, 67, 51, 36, 45, -36, 10, -69)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
+
+[node name="Timer" type="Timer" parent="." unique_id=1903448838]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

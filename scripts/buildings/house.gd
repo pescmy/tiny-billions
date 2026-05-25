@@ -3,6 +3,7 @@ extends StaticBody2D
 @export var grid_size: Vector2i = Vector2i(1, 1)
 @onready var sprite = $Sprite2D
 @onready var collision = $CollisionShape2D
+var gold_produced: int = 5
 
 
 func _ready() -> void:
@@ -21,3 +22,7 @@ func _ready() -> void:
 		Vector2(w, h),
 		Vector2(0, h)
 	])
+
+
+func _on_timer_timeout() -> void:
+	GameManager.add_gold(gold_produced)
