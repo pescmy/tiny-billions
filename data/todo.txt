@@ -2,7 +2,9 @@
 
 
 - restrict building to only place on ground layers
+
 - need to store objects in dictionary in the same was buildings work to block invalid placements
+
 - need to populate occupied cells if placing buildings pre running
 	The fix is in the building's _ready() — when a building is added to the scene, it should register itself in BuildManager.occupied_cells automatically. That way it doesn't matter whether it was placed at runtime or pre-populated in the editor.
 	Think about what the building needs to do in _ready() to register itself:
@@ -11,3 +13,5 @@
 	It knows its own global_position
 	It can convert that position to a grid cell via GridHelper
 	It can call BuildManager.mark_cell_occupied()
+
+- ghost buildings show producing resources, need to disable if not placed
