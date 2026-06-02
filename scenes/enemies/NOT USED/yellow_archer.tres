@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://ck3igx4sduvgr"]
+
+[ext_resource type="Script" uid="uid://ciwfraxcl3cl1" path="res://data/enemy_data.gd" id="1_vnbjo"]
+[ext_resource type="Texture2D" uid="uid://cqfa1hshytery" path="res://characters/enemies/yellow_archer/Archer_Yellow.png" id="2_b0aqq"]
+
+[resource]
+script = ExtResource("1_vnbjo")
+max_health = 100.0
+move_speed = 150.0
+attack_dmg = 5.0
+attack_speed = 10.0
+attack_range = 64.0
+name = "Yellow Archer"
+sprite_texture = ExtResource("2_b0aqq")
+metadata/_custom_type_script = "uid://ciwfraxcl3cl1"

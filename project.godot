@@ -92,6 +92,8 @@ debug_info={
 2d_physics/layer_4="Buildings"
 2d_physics/layer_5="Objects"
 2d_physics/layer_6="BuildZone"
+2d_physics/layer_7="BuildingHitboxes"
+2d_physics/layer_8="EnemyProjectiles"
 
 [physics]
 

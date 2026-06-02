@@ -8,6 +8,8 @@ var floating_text: PackedScene = preload("res://scenes/ui/floating_text.tscn")
 
 var gold_produced: int = 100
 
+@onready var health_component = $HealthComponent
+
 
 func _ready() -> void:
 	sprite.position.x = grid_size.x * 64.0 / 2
@@ -25,6 +27,9 @@ func _ready() -> void:
 		Vector2(w, h),
 		Vector2(0, h)
 	])
+	
+	health_component.health_depleted.connect(_on_building_destroyed)
+	
 
 
 func _on_timer_timeout() -> void:
@@ -37,4 +42,8 @@ func spawn_gold_popup() -> void:
 	popup.text = "+ " + str(gold_produced) + " Gold"
 	popup.global_position = global_position + Vector2(20, 0)
 	get_parent().add_child(popup)
-	
+
+
+func _on_building_destroyed() -> void:
+	print("House destroyed!")
+	queue_free()

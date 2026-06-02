@@ -2,8 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bpcgdpvk1pst7" path="res://scripts/buildings/house.gd" id="1_37mxk"]
 [ext_resource type="Texture2D" uid="uid://dbj4vhfx1kjvd" path="res://art/buildings/knights/House/House_Yellow.png" id="1_monst"]
+[ext_resource type="PackedScene" uid="uid://btsulkww0ontm" path="res://buildings/health_component.tscn" id="3_ggedt"]
+[ext_resource type="PackedScene" uid="uid://c8d743p0bu5fe" path="res://buildings/hitbox_component.tscn" id="4_73wt6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4ok4"]
+size = Vector2(70, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73wt6"]
 size = Vector2(70, 75)
 
 [node name="House" type="StaticBody2D" unique_id=1579707852]
@@ -29,5 +34,16 @@ carve_navigation_mesh = true
 [node name="IncomeTimer" type="Timer" parent="." unique_id=1903448838]
 wait_time = 5.0
 autostart = true
+
+[node name="HealthComponent" parent="." unique_id=6014518 instance=ExtResource("3_ggedt")]
+
+[node name="HitboxComponent" parent="." unique_id=405049182 node_paths=PackedStringArray("health_component") instance=ExtResource("4_73wt6")]
+collision_layer = 64
+collision_mask = 132
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=471150634]
+position = Vector2(0, 13.5)
+shape = SubResource("RectangleShape2D_73wt6")
 
 [connection signal="timeout" from="IncomeTimer" to="." method="_on_timer_timeout"]
