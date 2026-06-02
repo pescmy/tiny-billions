@@ -1,7 +1,7 @@
 extends Node
 #singleton
 
-var gold: int = 100
+var gold: int = 10000000
 var current_wave: int = 100
 
 signal gold_changed(new_gold)
