@@ -11,3 +11,7 @@ func take_damage(amount: float) -> void:
 	current_health -= amount
 	if current_health <= 0:
 		health_depleted.emit()
+	
+	
+	
+	#remove from occupied tiles dictionary

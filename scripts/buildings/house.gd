@@ -45,5 +45,7 @@ func spawn_gold_popup() -> void:
 
 
 func _on_building_destroyed() -> void:
-	print("House destroyed!")
+	var grid_pos = GridHelper.world_to_grid(global_position)
+	BuildManager.unmark_cell_occupied(grid_pos, grid_size)
 	queue_free()
+	print("House destroyed!")

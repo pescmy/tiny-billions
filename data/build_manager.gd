@@ -87,6 +87,13 @@ func mark_cell_occupied(grid_position, building) -> void:
 			occupied_cells[cell] = building
 
 
+func unmark_cell_occupied(grid_position: Vector2i, building_grid_size: Vector2i) -> void:
+	for x in building_grid_size.x:
+		for y in building_grid_size.y:
+			var cell = grid_position + Vector2i(x, y)
+			occupied_cells.erase(cell)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
