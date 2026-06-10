@@ -38,6 +38,7 @@ var invalid_reason: String = ""
 
 signal building_selected(scene: PackedScene)
 signal exit_build_mode
+signal cells_changed
 
 
 func is_cell_occupied(grid_position: Vector2i) -> bool:
@@ -85,6 +86,7 @@ func mark_cell_occupied(grid_position, building) -> void:
 		for y in current_building_size.y:
 			var cell = grid_position + Vector2i(x, y)
 			occupied_cells[cell] = building
+			cells_changed.emit()
 
 
 func unmark_cell_occupied(grid_position: Vector2i, building_grid_size: Vector2i) -> void:
@@ -92,6 +94,7 @@ func unmark_cell_occupied(grid_position: Vector2i, building_grid_size: Vector2i)
 		for y in building_grid_size.y:
 			var cell = grid_position + Vector2i(x, y)
 			occupied_cells.erase(cell)
+			cells_changed.emit()
 
 
 func _unhandled_input(event: InputEvent) -> void:
