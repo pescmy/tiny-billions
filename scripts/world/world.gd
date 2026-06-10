@@ -55,6 +55,9 @@ func place_building() -> void:
 			delete_ghost_building()
 			create_ghost_building(BuildManager.current_build_scene)
 			$WorldNavigation.bake_navigation_polygon.call_deferred()
+			
+			$Layers/FlatGroundLayer.refresh_solid_cells()
+			
 		else:
 			pass
 			#TODO

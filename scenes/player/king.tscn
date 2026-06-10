@@ -22,13 +22,8 @@ hframes = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=145437487]
 shape = SubResource("CapsuleShape2D_v7dht")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=346474404]
-path_postprocessing = 1
-simplify_path = true
-avoidance_enabled = true
-debug_enabled = true
-
 [node name="BuildRadius" type="Area2D" parent="." unique_id=317352294]
+visible = false
 collision_layer = 32
 collision_mask = 0
 

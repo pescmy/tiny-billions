@@ -18,7 +18,7 @@ func _ready() -> void:
 	current_health = max_health
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Move using the speed dictated by the resource
 	#velocity = Vector2.LEFT * enemy_blueprint.move_speed
 	move_and_slide()
