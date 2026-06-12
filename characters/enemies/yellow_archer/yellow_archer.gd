@@ -5,13 +5,14 @@ extends CharacterBody2D
 @export var move_speed: float = 100.0
 @export var attack_dmg: float = 5.0
 @export var attack_speed: float = 1.0
-@export var attack_range: float = 200.0
+@export var attack_range: float = 64.0 * 4
 
 var _velocity = Vector2()
 const MASS = 10.0
 const ARRIVE_DISTANCE = 10.0
 
 var target_position: Vector2
+var target_building: Node
 
 @export_category("Audio")
 @export var death_sound: AudioStream
@@ -21,6 +22,7 @@ var current_health: float
 
 func _ready() -> void:
 	BuildManager.building_placed.connect(_on_building_placed)
+	
 	current_health = max_health
 
 
@@ -32,8 +34,14 @@ func _physics_process(_delta):
 
 
 func _find_target() -> void:
-	var distance: float = 10000000.0
+	var distance: float
 	var smallest_distance: float = 10000000.0
+	
+	
+	#distance = global_position.distance_squared_to(king.position)
+	if distance < 1000:
+		pass
+	
 	
 	for building_location in BuildManager.occupied_cells: # or player location
 		distance = global_position.distance_squared_to(GridHelper.grid_to_world(building_location))
@@ -41,9 +49,11 @@ func _find_target() -> void:
 		if distance < smallest_distance:
 			smallest_distance = distance
 			target_position = GridHelper.grid_to_world(building_location)
-		
-	print(smallest_distance)
-	print(target_position)
+			target_building = BuildManager.occupied_cells[building_location][1]
+	
+	print(target_building)
+	#print(smallest_distance)
+	#print(target_position)
 
 
 func _move_to(local_position):
@@ -64,6 +74,7 @@ func _animate(x, _y) -> void:
 		$Sprite2D.flip_h = true
 	if x > 0:
 		$Sprite2D.flip_h = false
+
 
 func _on_building_placed() -> void:
 	_find_target()

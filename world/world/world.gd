@@ -49,7 +49,7 @@ func place_building() -> void:
 			new_building.global_position = world_position
 			buildings.add_child(new_building)
 			
-			BuildManager.mark_cell_occupied(grid_position, building_type)
+			BuildManager.mark_cell_occupied(grid_position,building_type, new_building)
 			
 			delete_ghost_building()
 			create_ghost_building(BuildManager.current_build_scene)

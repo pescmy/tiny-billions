@@ -82,14 +82,14 @@ func in_king_radius(king_position: Vector2, mouse_position: Vector2) -> bool:
 		return false
 	
 
-func mark_cell_occupied(grid_position, building) -> void:
+func mark_cell_occupied(grid_position, building_type, building) -> void:
 	for x in current_building_size.x:
 		for y in current_building_size.y:
 			var cell = grid_position + Vector2i(x, y)
-			occupied_cells[cell] = building
+			occupied_cells[cell] = [building_type, building]
 			cells_changed.emit()
 			building_placed.emit()
-			print(occupied_cells)
+
 
 
 func unmark_cell_occupied(grid_position: Vector2i, building_grid_size: Vector2i) -> void:

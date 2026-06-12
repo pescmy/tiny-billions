@@ -56,10 +56,10 @@ func _ready() -> void:
 
 func _update_sprite() -> void:
 	var grid_pos = GridHelper.world_to_grid(global_position)
-	var up    = BuildManager.occupied_cells.get(grid_pos + Vector2i(0, -1)) == "wall"
-	var right = BuildManager.occupied_cells.get(grid_pos + Vector2i(1, 0)) == "wall"
-	var down  = BuildManager.occupied_cells.get(grid_pos + Vector2i(0, 1)) == "wall"
-	var left  = BuildManager.occupied_cells.get(grid_pos + Vector2i(-1, 0)) == "wall"
+	var up    = BuildManager.occupied_cells.get(grid_pos + Vector2i(0, -1), [null])[0] == "wall"
+	var right = BuildManager.occupied_cells.get(grid_pos + Vector2i(1, 0), [null])[0] == "wall"
+	var down  = BuildManager.occupied_cells.get(grid_pos + Vector2i(0, 1), [null])[0] == "wall"
+	var left  = BuildManager.occupied_cells.get(grid_pos + Vector2i(-1, 0), [null])[0] == "wall"
 	
 	var mask = (up as int) | ((right as int) << 1) | ((down as int) << 2) | ((left as int) << 3)
 	$Sprite2D.frame = FRAME_MAP.get(mask, 12)
