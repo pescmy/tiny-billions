@@ -2,9 +2,9 @@ extends Node
 #singleton
 
 var buildings: Dictionary = {
-	"town_centre": preload("res://scenes/buildings/base/towncentre.tscn"),
-	"house": preload("res://scenes/buildings/base/house.tscn"),
-	"wall": preload("res://scenes/buildings/base/wall.tscn")
+	"town_centre": preload("res://buildings/towncentre/towncentre.tscn"),
+	"house": preload("res://buildings/house/house.tscn"),
+	"wall": preload("res://buildings/wall/wall.tscn")
 	
 }
 
@@ -39,6 +39,7 @@ var invalid_reason: String = ""
 signal building_selected(scene: PackedScene)
 signal exit_build_mode
 signal cells_changed
+signal building_placed
 
 
 func is_cell_occupied(grid_position: Vector2i) -> bool:
@@ -87,6 +88,8 @@ func mark_cell_occupied(grid_position, building) -> void:
 			var cell = grid_position + Vector2i(x, y)
 			occupied_cells[cell] = building
 			cells_changed.emit()
+			building_placed.emit()
+			print(occupied_cells)
 
 
 func unmark_cell_occupied(grid_position: Vector2i, building_grid_size: Vector2i) -> void:

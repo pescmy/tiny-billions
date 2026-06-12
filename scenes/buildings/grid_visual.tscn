@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://m4ahwryy7ui"]
-
-[ext_resource type="Script" uid="uid://djdpafy0owe13" path="res://scripts/world/grid_visual.gd" id="1_2ai8y"]
-
-[node name="GridVisual" type="Node2D" unique_id=1307838698]
-script = ExtResource("1_2ai8y")

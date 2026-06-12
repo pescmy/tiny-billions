@@ -21,3 +21,5 @@
 		It knows its own global_position
 		It can convert that position to a grid cell via GridHelper
 		It can call BuildManager.mark_cell_occupied()
+- rework mesh system as removing navigation
+- stop ghost buildings shaking and placement sound 

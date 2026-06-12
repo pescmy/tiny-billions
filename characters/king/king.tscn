@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://do6gcpqj3pwte"]
+
+[ext_resource type="Texture2D" uid="uid://cbb6jhrp7ny00" path="res://art/sprites/knights/Warrior/Warrior_Idle.png" id="1_tnbef"]
+[ext_resource type="Script" uid="uid://ck371k8q61oui" path="res://characters/king/king.gd" id="1_v7dht"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7dht"]
+radius = 12.0
+height = 46.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v7dht"]
+radius = 500.0
+
+[node name="King" type="CharacterBody2D" unique_id=1401887729]
+collision_layer = 2
+collision_mask = 29
+script = ExtResource("1_v7dht")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1881030827]
+texture = ExtResource("1_tnbef")
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=145437487]
+shape = SubResource("CapsuleShape2D_v7dht")
+
+[node name="BuildRadius" type="Area2D" parent="." unique_id=317352294]
+visible = false
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildRadius" unique_id=361956502]
+shape = SubResource("CircleShape2D_v7dht")

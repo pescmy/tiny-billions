@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://werbmwdgfipx"]
-
-[ext_resource type="Script" uid="uid://bwebyai2x85vt" path="res://scripts/ui/floating_text.gd" id="1_38qr0"]
-
-[node name="FloatingText" type="Label" unique_id=280946410]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "+5"
-script = ExtResource("1_38qr0")
