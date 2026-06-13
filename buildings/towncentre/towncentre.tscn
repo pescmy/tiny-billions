@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c5bhsnnnnh7xc" path="res://buildings/towncentre/towncenter.gd" id="1_5fqts"]
 [ext_resource type="Texture2D" uid="uid://dnd68iogl50td" path="res://art/buildings/knights/Castle/Castle_Yellow.png" id="2_kolps"]
-[ext_resource type="PackedScene" uid="uid://btsulkww0ontm" path="res://buildings/components/health_component.tscn" id="3_174sy"]
-[ext_resource type="PackedScene" uid="uid://c8d743p0bu5fe" path="res://buildings/components/hitbox_component.tscn" id="4_mv6ek"]
+[ext_resource type="PackedScene" uid="uid://btsulkww0ontm" path="res://components/health_component.tscn" id="3_174sy"]
+[ext_resource type="PackedScene" uid="uid://c8d743p0bu5fe" path="res://components/hitbox_component.tscn" id="4_mv6ek"]
 [ext_resource type="PackedScene" uid="uid://b46bwslcrrbn4" path="res://effects/building_shake/building_shake_component.tscn" id="5_op61w"]
 [ext_resource type="AudioStream" uid="uid://br30qajep3sul" path="res://audio/click1.ogg" id="6_juvb6"]
 

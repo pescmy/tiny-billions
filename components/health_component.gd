@@ -9,6 +9,7 @@ signal health_depleted
 
 func take_damage(amount: float) -> void:
 	current_health -= amount
+	print(current_health)
 	if current_health <= 0:
 		health_depleted.emit()
 	

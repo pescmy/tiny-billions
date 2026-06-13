@@ -42,7 +42,7 @@ script = ExtResource("6_bawgc")
 [node name="Characters" type="Node2D" parent="." unique_id=678179957]
 
 [node name="King" parent="Characters" unique_id=1401887729 instance=ExtResource("9_g8scl")]
-position = Vector2(-373, 98)
+position = Vector2(84, 240)
 collision_mask = 28
 
 [node name="YellowArcher" parent="Characters" unique_id=942681783 instance=ExtResource("10_mgjuw")]
