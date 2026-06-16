@@ -10,6 +10,8 @@ extends CharacterBody2D
 @export_category("Audio")
 @export var death_sound: AudioStream
 
+@onready var health_component = $HealthComponent
+
 var _velocity = Vector2()
 const MASS = 10.0
 const ARRIVE_DISTANCE = 10.0
@@ -18,13 +20,14 @@ var target_position: Vector2
 var target_building: Node
 
 var distance: float
-var smallest_distance: float = 10000000.0
+var smallest_distance: float = INF
 
 var is_attacking: bool = false
 
 
 func _ready() -> void:
 	BuildManager.building_placed.connect(_on_building_placed)
+	health_component.health_depleted.connect(_on_killed)
 	_find_target()
 	
 	
@@ -41,7 +44,7 @@ func _physics_process(_delta):
 
 
 func _find_target() -> void:    
-	smallest_distance = 10000000.0 # Reset this so it recalculates properly!
+	smallest_distance = INF
 	
 	for building_location in BuildManager.occupied_cells:
 		var building_node = BuildManager.occupied_cells[building_location][1]
@@ -132,3 +135,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "attack":
 		is_attacking = false 
 		$AnimationPlayer.play("idle")
+
+
+func _on_killed() -> void:
+	queue_free()
+	print("Archer destroyed!")

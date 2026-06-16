@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 @export_category("Stats")
 @export var move_speed: float = 250.0
-@export var attack_dmg: float = 50.0
-@export var attack_speed: float = 5.0
-@export var attack_range: float = 64.0
+@export var attack_dmg: float = 15.0
+@export var attack_speed: float = 1.0
+@export var attack_range: float = 64.0 * 6
 @onready var attack_timer: Timer = $AttackTimer
 
 @export_category("Audio")
@@ -28,11 +28,11 @@ enum State { IDLE, FOLLOW }
 var _state = State.IDLE
 
 var enemies
-
 var smallest_distance: float = 10000000.0
 var distance: float
-var target: Node
+var target: Node2D = null # Cast to Node2D for easy position access
 var target_position: Vector2
+var is_attacking: bool = false
 
 
 signal king_position_changed(global_position: Vector2)
@@ -41,11 +41,20 @@ signal king_position_changed(global_position: Vector2)
 func _ready() -> void:
 	if build_radius.shape is CircleShape2D:
 		build_radius.shape.radius = radius_size
-	_change_state(State.IDLE)
+			
+		# Automatically configure your timer based on attack_speed stat
+		# If attack_speed is 5, wait_time becomes 0.2 seconds (5 attacks per second)
+		attack_timer.wait_time = 1.0 / attack_speed
+		attack_timer.one_shot = true
+		
+		_change_state(State.IDLE)
 
 
 
 func _process(_delta):
+	_find_target()
+	_attack_target()
+	
 	if _state != State.FOLLOW:
 		return
 	
@@ -59,11 +68,6 @@ func _process(_delta):
 				return
 			_next_point = _path[0]
 	
-	enemies = get_tree().get_nodes_in_group("enemies")
-	print(enemies)
-	
-	_find_target()
-
 
 
 func _unhandled_input(event):
@@ -112,51 +116,51 @@ func _change_state(new_state):
 
 
 func _find_target() -> void:    
-	smallest_distance = 10000000.0 
-	print("enemy found")
+	enemies = get_tree().get_nodes_in_group("enemies")
+	smallest_distance = INF
+	target = null # Reset target to look for the closest valid alive one
+
 	for enemy in enemies:
-		distance = global_position.distance_squared_to(enemy.global_position)
+			if is_instance_valid(enemy):
+				# Regular distance check to match attack_range comfortably
+				distance = global_position.distance_to(enemy.global_position)
+				
+				if distance < smallest_distance:
+					smallest_distance = distance
+					target = enemy
+					target_position = enemy.global_position
 
-			
-		if distance < smallest_distance:
-			smallest_distance = distance
-			target = enemy
-			# Sync target_position directly to the building's physical center
-			target_position = enemy.global_position
-			print("target distance got")
-			
+
+func _attack_target() -> void:
+	# If no valid target exists or it moves out of range, clear flags and stop
+	if not is_instance_valid(target) or smallest_distance > attack_range:
+		is_attacking = false
+		return
 	
-	if is_instance_valid(target):
+	# TARGET IS VALID AND IN RANGE
+	# Crucial Check: Only attack if our weapon cooldown timer is completely finished
+	if attack_timer.is_stopped():
+		is_attacking = true
+		
+		# Start the cooldown countdown right now
 		attack_timer.start()
-		print(attack_timer.time_left)
-
-
-
-#func _attack_target() -> void:
-	#if not is_instance_valid(target_building):
-		#attack_timer.stop()
-		#_find_target()
-	#
-	#if is_instance_valid(target_building):
-		#var distance_to_target = global_position.distance_to(target_building.global_position)
-		#print(attack_range)
-		#print(distance_to_target)
-		#
-		#if distance_to_target <= attack_range:
-			#
-			## Stop moving completely during the attack strike
-			#_velocity = Vector2.ZERO 
-			#is_attacking = true
-			## Play the attack animation
-			#$AnimationPlayer.play("attack")
-			#
-			## Face the target while attacking
-			#if target_building.global_position.x < global_position.x:
-				#$Sprite2D.flip_h = true
-			#else:
-				#$Sprite2D.flip_h = false
-			#
-			#
-			#var health_component = target_building.get_node("HealthComponent")
-			#health_component.take_damage(attack_dmg)
-			#print("Attacked building for ", attack_dmg, " damage.")
+		
+		# Turn to face enemy during strike
+		if target.global_position.x < global_position.x:
+			$Sprite2D.flip_h = true
+		else:
+			$Sprite2D.flip_h = false
+			
+		# Optional: Play an animation if it exists
+		if has_node("AnimationPlayer"):
+			$AnimationPlayer.play("attack")
+		
+		# Safe Node Fetching: Prevents crashes if an enemy missing a component is tagged
+		var health_component = target.get_node_or_null("HealthComponent")
+		if health_component and health_component.has_method("take_damage"):
+			health_component.take_damage(attack_dmg)
+			#print("Successfully hit enemy for ", attack_dmg, " damage.")
+		else:
+			# Fallback if your enemy script handles damage directly without a component node
+			if target.has_method("take_damage"):
+				target.take_damage(attack_dmg)
