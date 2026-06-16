@@ -29,3 +29,5 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuildRadius" unique_id=361956502]
 shape = SubResource("CircleShape2D_v7dht")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=1002429844]

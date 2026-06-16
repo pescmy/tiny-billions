@@ -10,7 +10,6 @@ var _end_point = Vector2i()
 var _path = PackedVector2Array()
 
 func _ready():
-	
 	var used = get_used_cells()
 	var min_x = used[0].x
 	var max_x = used[0].x

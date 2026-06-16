@@ -3,6 +3,14 @@
 
 
 
+---ENEMIES---
+- archers can walk on water
+	enemies have no pathfinding
+- on spawn archers walk to middle of the map
+
+
+
+
 ---OBJECTS---
 - need to store objects in dictionary in the same was buildings work to block invalid placements
 

@@ -1,6 +1,15 @@
 extends CharacterBody2D
 
-@export var move_speed: int = 250
+@export_category("Stats")
+@export var move_speed: float = 250.0
+@export var attack_dmg: float = 50.0
+@export var attack_speed: float = 5.0
+@export var attack_range: float = 64.0
+@onready var attack_timer: Timer = $AttackTimer
+
+@export_category("Audio")
+@export var death_sound: AudioStream
+
 @onready var build_radius = $BuildRadius/CollisionShape2D
 @onready var _tile_map = $"../../Layers/FlatGroundLayer"
 @onready var _path_visual = $"../../PathVisual"

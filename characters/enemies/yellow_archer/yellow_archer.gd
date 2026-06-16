@@ -2,10 +2,13 @@ extends CharacterBody2D
 
 @export_category("Stats")
 @export var move_speed: float = 100.0
-@export var attack_dmg: float = 50.0
-@export var attack_speed: float = 1.0
+@export var attack_dmg: float = 5.0
+@export var attack_speed: float = 2.0
 @export var attack_range: float = 64.0 * 4
 @onready var attack_timer: Timer = $AttackTimer
+
+@export_category("Audio")
+@export var death_sound: AudioStream
 
 var _velocity = Vector2()
 const MASS = 10.0
@@ -19,16 +22,13 @@ var smallest_distance: float = 10000000.0
 
 var is_attacking: bool = false
 
-@export_category("Audio")
-@export var death_sound: AudioStream
-
-
 
 func _ready() -> void:
 	BuildManager.building_placed.connect(_on_building_placed)
-
-
-
+	_find_target()
+	print(target_position)
+	
+	attack_timer.wait_time = 1.0 / attack_speed
 
 
 func _physics_process(_delta):
@@ -38,10 +38,6 @@ func _physics_process(_delta):
 		
 	if not _move_to(target_position):
 		pass # Target is out of range, still moving
-	
-
-	
-
 
 
 func _find_target() -> void:    
@@ -62,26 +58,6 @@ func _find_target() -> void:
 	
 	if is_instance_valid(target_building):
 		attack_timer.start()
-
-
-#func _find_target() -> void:	
-	#smallest_distance = 10000000.0
-	##distance = global_position.distance_squared_to(king.position)
-	#if distance < 1000:
-		#pass
-	#
-	#
-	#for building_location in BuildManager.occupied_cells: # or player location
-		#distance = global_position.distance_squared_to(GridHelper.grid_to_world(building_location))
-		#
-		#if distance < smallest_distance:
-			#smallest_distance = distance
-			#target_position = GridHelper.grid_to_world(building_location)
-			#target_building = BuildManager.occupied_cells[building_location][1]
-	#
-	#attack_timer.start()
-	#
-	#print(target_building)
 
 
 func _move_to(local_position):
@@ -127,16 +103,6 @@ func _attack_target() -> void:
 			var health_component = target_building.get_node("HealthComponent")
 			health_component.take_damage(attack_dmg)
 			print("Attacked building for ", attack_dmg, " damage.")
-
-
-
-
-#
-#func _animate_flip(x, _y) -> void:
-	#if x < 0:
-		#$Sprite2D.flip_h = true
-	#if x > 0:
-		#$Sprite2D.flip_h = false
 
 
 func _animate(x: float, _y: float) -> void:

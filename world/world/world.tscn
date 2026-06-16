@@ -7,7 +7,7 @@
 [ext_resource type="TileSet" uid="uid://dx1x8du2tkvms" path="res://art/FlatGroundLayer.tres" id="5_iqh46"]
 [ext_resource type="Script" uid="uid://d1ralafjdi0y4" path="res://world/world/flat_ground_layer.gd" id="6_bawgc"]
 [ext_resource type="PackedScene" uid="uid://blvmyghv8pny4" path="res://world/objects/object.tscn" id="7_2s0tq"]
-[ext_resource type="PackedScene" uid="uid://pqvgnqv4iptc" path="res://buildings/towncentre/towncentre.tscn" id="8_2ansq"]
+[ext_resource type="Script" uid="uid://c21qoc2dfobc4" path="res://characters/enemies/enemies.gd" id="8_lsxwa"]
 [ext_resource type="PackedScene" uid="uid://do6gcpqj3pwte" path="res://characters/king/king.tscn" id="9_g8scl"]
 [ext_resource type="PackedScene" uid="uid://cmdapp51jojtw" path="res://characters/enemies/yellow_archer/yellow_archer.tscn" id="10_mgjuw"]
 [ext_resource type="PackedScene" uid="uid://m4ahwryy7ui" path="res://world/world_grid/grid_visual.tscn" id="11_ebnwc"]
@@ -45,7 +45,10 @@ script = ExtResource("6_bawgc")
 position = Vector2(84, 240)
 collision_mask = 28
 
-[node name="YellowArcher" parent="Characters" unique_id=942681783 instance=ExtResource("10_mgjuw")]
+[node name="Enemies" type="Node2D" parent="Characters" unique_id=1037770287]
+script = ExtResource("8_lsxwa")
+
+[node name="YellowArcher" parent="Characters/Enemies" unique_id=942681783 instance=ExtResource("10_mgjuw")]
 
 [node name="GridVisual" parent="." unique_id=1307838698 instance=ExtResource("11_ebnwc")]
 
@@ -80,5 +83,22 @@ position = Vector2(197, 416)
 
 [node name="Buildings" type="Node2D" parent="." unique_id=1179630860]
 
-[node name="TownCentre" parent="Buildings" unique_id=1579707852 instance=ExtResource("8_2ansq")]
-position = Vector2(879, 236)
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=763727848]
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawner" unique_id=1773310301]
+position = Vector2(379, 1054)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawner" unique_id=558473161]
+position = Vector2(-689, -286)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemySpawner" unique_id=821977872]
+position = Vector2(-727, 778)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemySpawner" unique_id=1963202428]
+position = Vector2(-479, 1003)
+
+[node name="Marker2D5" type="Marker2D" parent="EnemySpawner" unique_id=1363113461]
+position = Vector2(1225, 830)
+
+[node name="Marker2D6" type="Marker2D" parent="EnemySpawner" unique_id=64428604]
+position = Vector2(1191, -272)

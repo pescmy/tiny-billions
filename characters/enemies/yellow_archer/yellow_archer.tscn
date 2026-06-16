@@ -82,7 +82,7 @@ _data = {
 
 [node name="YellowArcher" type="CharacterBody2D" unique_id=942681783]
 collision_layer = 4
-collision_mask = 26
+collision_mask = 27
 script = ExtResource("1_jg2la")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=846472792]
