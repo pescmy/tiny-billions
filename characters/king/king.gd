@@ -27,6 +27,14 @@ var _velocity = Vector2()
 enum State { IDLE, FOLLOW }
 var _state = State.IDLE
 
+var enemies
+
+var smallest_distance: float = 10000000.0
+var distance: float
+var target: Node
+var target_position: Vector2
+
+
 signal king_position_changed(global_position: Vector2)
 
 
@@ -34,6 +42,7 @@ func _ready() -> void:
 	if build_radius.shape is CircleShape2D:
 		build_radius.shape.radius = radius_size
 	_change_state(State.IDLE)
+
 
 
 func _process(_delta):
@@ -49,6 +58,12 @@ func _process(_delta):
 				_change_state(State.IDLE)
 				return
 			_next_point = _path[0]
+	
+	enemies = get_tree().get_nodes_in_group("enemies")
+	print(enemies)
+	
+	_find_target()
+
 
 
 func _unhandled_input(event):
@@ -90,3 +105,58 @@ func _change_state(new_state):
 		_path_visual.set_path(_path)
 		_next_point = _path[1]
 	_state = new_state
+
+
+
+
+
+
+func _find_target() -> void:    
+	smallest_distance = 10000000.0 
+	print("enemy found")
+	for enemy in enemies:
+		distance = global_position.distance_squared_to(enemy.global_position)
+
+			
+		if distance < smallest_distance:
+			smallest_distance = distance
+			target = enemy
+			# Sync target_position directly to the building's physical center
+			target_position = enemy.global_position
+			print("target distance got")
+			
+	
+	if is_instance_valid(target):
+		attack_timer.start()
+		print(attack_timer.time_left)
+
+
+
+#func _attack_target() -> void:
+	#if not is_instance_valid(target_building):
+		#attack_timer.stop()
+		#_find_target()
+	#
+	#if is_instance_valid(target_building):
+		#var distance_to_target = global_position.distance_to(target_building.global_position)
+		#print(attack_range)
+		#print(distance_to_target)
+		#
+		#if distance_to_target <= attack_range:
+			#
+			## Stop moving completely during the attack strike
+			#_velocity = Vector2.ZERO 
+			#is_attacking = true
+			## Play the attack animation
+			#$AnimationPlayer.play("attack")
+			#
+			## Face the target while attacking
+			#if target_building.global_position.x < global_position.x:
+				#$Sprite2D.flip_h = true
+			#else:
+				#$Sprite2D.flip_h = false
+			#
+			#
+			#var health_component = target_building.get_node("HealthComponent")
+			#health_component.take_damage(attack_dmg)
+			#print("Attacked building for ", attack_dmg, " damage.")

@@ -30,6 +30,7 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 nav_obstacles=""
+enemies=""
 
 [input]
 

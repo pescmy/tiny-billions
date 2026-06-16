@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://blvmyghv8pny4" path="res://world/objects/object.tscn" id="7_2s0tq"]
 [ext_resource type="Script" uid="uid://c21qoc2dfobc4" path="res://characters/enemies/enemies.gd" id="8_lsxwa"]
 [ext_resource type="PackedScene" uid="uid://do6gcpqj3pwte" path="res://characters/king/king.tscn" id="9_g8scl"]
-[ext_resource type="PackedScene" uid="uid://cmdapp51jojtw" path="res://characters/enemies/yellow_archer/yellow_archer.tscn" id="10_mgjuw"]
 [ext_resource type="PackedScene" uid="uid://m4ahwryy7ui" path="res://world/world_grid/grid_visual.tscn" id="11_ebnwc"]
 [ext_resource type="PackedScene" uid="uid://bc4r7ahkouudj" path="res://ui/debug/debug_ui.tscn" id="12_gx8n8"]
 [ext_resource type="PackedScene" uid="uid://bju7lt3vbaa8f" path="res://ui/economy/economy_ui.tscn" id="13_oadip"]
@@ -47,8 +46,6 @@ collision_mask = 28
 
 [node name="Enemies" type="Node2D" parent="Characters" unique_id=1037770287]
 script = ExtResource("8_lsxwa")
-
-[node name="YellowArcher" parent="Characters/Enemies" unique_id=942681783 instance=ExtResource("10_mgjuw")]
 
 [node name="GridVisual" parent="." unique_id=1307838698 instance=ExtResource("11_ebnwc")]
 

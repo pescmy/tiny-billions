@@ -10,7 +10,7 @@ extends Node2D
 var spawn_locations: Array
 
 @onready var spawn_timer: Timer
-var spawn_time: float = 5.0
+var spawn_time: float = 2.0
 
 var enemies_to_spawn: Dictionary = {
 	"yellow_archer": preload("res://characters/enemies/yellow_archer/yellow_archer.tscn")
@@ -18,7 +18,9 @@ var enemies_to_spawn: Dictionary = {
 	
 }
 
+
 func _ready() -> void:
+	#Add spawn locations to array for random pick
 	spawn_locations.append(spawn_location_1)
 	spawn_locations.append(spawn_location_2)
 	spawn_locations.append(spawn_location_3)
@@ -26,6 +28,7 @@ func _ready() -> void:
 	spawn_locations.append(spawn_location_5)
 	spawn_locations.append(spawn_location_6)
 	
+	#Add timer to spawn enemies, should be set to however long before wave starts. Should also loop to add multiple enemies based on wave
 	spawn_timer = Timer.new()
 	add_child(spawn_timer)
 	
@@ -35,15 +38,22 @@ func _ready() -> void:
 	
 	spawn_timer.timeout.connect(_on_timer_timeout)
 	spawn_timer.start()
-	
-	print(enemies_to_spawn)
+
+
 
 func _process(_delta: float) -> void:
 	pass#print(spawn_timer.time_left)
 
 func _on_timer_timeout() -> void:
 	var random_enemy = enemies_to_spawn.values()[randi() % enemies_to_spawn.size()]
-	var enemy_instance = random_enemy.instantiate()
+	var enemy_instance: Node = random_enemy.instantiate()
+	
 	var random_marker = spawn_locations[randi() % spawn_locations.size()]
+	
 	enemy_instance.position = random_marker.position
 	add_child(enemy_instance)
+	enemy_instance.add_to_group("enemies")
+	
+	#print("enemy spawned")
+	#print(get_tree().get_nodes_in_group("enemies"))
+	

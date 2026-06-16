@@ -26,7 +26,7 @@ var is_attacking: bool = false
 func _ready() -> void:
 	BuildManager.building_placed.connect(_on_building_placed)
 	_find_target()
-	print(target_position)
+	
 	
 	attack_timer.wait_time = 1.0 / attack_speed
 
@@ -82,8 +82,6 @@ func _attack_target() -> void:
 	
 	if is_instance_valid(target_building):
 		var distance_to_target = global_position.distance_to(target_building.global_position)
-		print(attack_range)
-		print(distance_to_target)
 		
 		if distance_to_target <= attack_range:
 			
