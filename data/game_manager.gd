@@ -2,7 +2,9 @@ extends Node
 #singleton
 
 var gold: int = 10000
+
 var current_wave: int = 0
+var time_between_waves: float = 1
 
 signal gold_changed(new_gold)
 
@@ -25,3 +27,10 @@ func spend_gold(amount: int) -> bool:
 	gold -= amount
 	gold_changed.emit(gold)
 	return true
+
+
+func wave_start() -> void:
+	current_wave += 1
+
+	
+	

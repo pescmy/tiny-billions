@@ -14,6 +14,8 @@ extends CharacterBody2D
 @onready var _tile_map = $"../../Layers/FlatGroundLayer"
 @onready var _path_visual = $"../../PathVisual"
 
+@onready var health_component = $HealthComponent
+
 var radius_size: float = 500.0
 var _click_position = Vector2()
 var _path = PackedVector2Array()
@@ -39,6 +41,8 @@ signal king_position_changed(global_position: Vector2)
 
 
 func _ready() -> void:
+	health_component.health_depleted.connect(_on_killed)
+	
 	if build_radius.shape is CircleShape2D:
 		build_radius.shape.radius = radius_size
 			
@@ -111,6 +115,9 @@ func _change_state(new_state):
 	_state = new_state
 
 
+func _on_killed() -> void:
+	queue_free()
+	#Game over
 
 
 

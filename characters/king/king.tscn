@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cbb6jhrp7ny00" path="res://art/sprites/knights/Warrior/Warrior_Idle.png" id="1_tnbef"]
 [ext_resource type="Script" uid="uid://ck371k8q61oui" path="res://characters/king/king.gd" id="1_v7dht"]
+[ext_resource type="PackedScene" uid="uid://btsulkww0ontm" path="res://components/health_component.tscn" id="3_88ryr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v7dht"]
 radius = 12.0
@@ -31,3 +32,5 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_v7dht")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=1002429844]
+
+[node name="HealthComponent" parent="." unique_id=6014518 instance=ExtResource("3_88ryr")]

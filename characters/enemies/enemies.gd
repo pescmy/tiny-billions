@@ -10,7 +10,7 @@ extends Node2D
 var spawn_locations: Array
 
 @onready var spawn_timer: Timer
-var spawn_time: float = 2.0
+var spawn_time: float = GameManager.time_between_waves
 
 var enemies_to_spawn: Dictionary = {
 	"yellow_archer": preload("res://characters/enemies/yellow_archer/yellow_archer.tscn")
@@ -44,7 +44,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass#print(spawn_timer.time_left)
 
-func _on_timer_timeout() -> void:
+
+func spawn_enemies() -> void:
 	var random_enemy = enemies_to_spawn.values()[randi() % enemies_to_spawn.size()]
 	var enemy_instance: Node = random_enemy.instantiate()
 	
@@ -56,4 +57,7 @@ func _on_timer_timeout() -> void:
 	
 	#print("enemy spawned")
 	#print(get_tree().get_nodes_in_group("enemies"))
-	
+
+func _on_timer_timeout() -> void:
+	spawn_enemies()
+	#GameManager.wave_start()

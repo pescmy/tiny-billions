@@ -31,3 +31,7 @@
 		It can call BuildManager.mark_cell_occupied()
 - rework mesh system as removing navigation
 - stop ghost buildings shaking and placement sound 
+
+
+---GAME CONDITIONS---
+- need to add in loss condition on town centre
