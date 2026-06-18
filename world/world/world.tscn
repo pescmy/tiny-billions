@@ -99,7 +99,3 @@ position = Vector2(1225, 830)
 
 [node name="Marker2D6" type="Marker2D" parent="EnemySpawner" unique_id=64428604]
 position = Vector2(1191, -272)
-
-[node name="WaveTimer" type="Timer" parent="." unique_id=923691120]
-wait_time = 30.0
-autostart = true

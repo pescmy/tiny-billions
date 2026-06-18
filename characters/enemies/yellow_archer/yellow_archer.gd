@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var move_speed: float = 100.0
 @export var attack_dmg: float = 5.0
 @export var attack_speed: float = 2.0
-@export var attack_range: float = 64.0 * 4
+@export var attack_range: float = 64.0 * 1.5
 @onready var attack_timer: Timer = $AttackTimer
 
 @export_category("Audio")
@@ -35,12 +35,12 @@ func _ready() -> void:
 
 
 func _physics_process(_delta):
-	# If we have a valid building, keep updating our target position to its center
 	if is_instance_valid(target_building):
 		target_position = target_building.global_position
 		
 	if not _move_to(target_position):
-		pass # Target is out of range, still moving
+		pass
+
 
 
 func _find_target() -> void:    
@@ -50,13 +50,11 @@ func _find_target() -> void:
 		var building_node = BuildManager.occupied_cells[building_location][1]
 		
 		if is_instance_valid(building_node):
-			# Calculate distance directly to the building node's physical position
 			distance = global_position.distance_squared_to(building_node.global_position)
 			
 			if distance < smallest_distance:
 				smallest_distance = distance
 				target_building = building_node
-				# Sync target_position directly to the building's physical center
 				target_position = building_node.global_position
 	
 	if is_instance_valid(target_building):
@@ -76,6 +74,19 @@ func _move_to(local_position):
 		_velocity = Vector2.ZERO
 		_animate(0.0, 0.0)
 		return true
+
+
+#func _move_to(local_position):
+	#var distance = global_position.distance_to(local_position)
+	#if distance > attack_range:
+		#velocity = (local_position - global_position).normalized() * move_speed
+		#move_and_slide()
+		#_animate(velocity.x, velocity.y)
+		#return false
+	#else:
+		#velocity = Vector2.ZERO
+		#_animate(0.0, 0.0)
+		#return true
 
 
 func _attack_target() -> void:
