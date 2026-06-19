@@ -120,8 +120,6 @@ func _on_killed() -> void:
 	#Game over
 
 
-
-
 func _find_target() -> void:    
 	enemies = get_tree().get_nodes_in_group("enemies")
 	smallest_distance = INF
