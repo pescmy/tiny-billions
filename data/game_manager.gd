@@ -6,7 +6,7 @@ var gold: int = 10000
 var current_wave: int = 0
 
 var wave_timer: Timer
-var time_between_waves: float = 10.0
+var time_between_waves: float = 5.0
 var number_of_enemies: int = 5
 var base_enemies: int = 5
 var enemies_per_wave_scaling: int = 3
@@ -47,7 +47,9 @@ func spend_gold(amount: int) -> bool:
 
 func wave_start() -> void:
 	current_wave += 1
+	print(current_wave)
 	number_of_enemies = base_enemies + (current_wave * enemies_per_wave_scaling)
+	print("Spawning: %d" %number_of_enemies + " enemies")
 	start_of_wave.emit(number_of_enemies)
 
 

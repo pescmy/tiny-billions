@@ -6,6 +6,7 @@ extends StaticBody2D
 
 var gold_produced: int = 1
 
+@onready var health_component = $HealthComponent
 @onready var building_shake_component = $BuildingShake
 @onready var build_sound = $AudioStreamPlayer2D
 
@@ -29,6 +30,15 @@ func _ready() -> void:
 	
 	building_shake_component.shake()
 	build_sound.play()
+	health_component.health_depleted.connect(_on_building_destroyed)
+
 
 func _on_income_timer_timeout() -> void:
 	GameManager.add_gold(gold_produced)
+
+
+func _on_building_destroyed() -> void:
+	var grid_pos = GridHelper.world_to_grid(global_position)
+	BuildManager.unmark_cell_occupied(grid_pos, grid_size)
+	queue_free()
+	print("Town Centre destroyed!")

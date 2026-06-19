@@ -32,8 +32,8 @@ func _ready() -> void:
 	])
 	
 	building_shake_component.shake()
-	health_component.health_depleted.connect(_on_building_destroyed)
 	build_sound.play()
+	health_component.health_depleted.connect(_on_building_destroyed)
 
 
 

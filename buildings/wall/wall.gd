@@ -4,6 +4,7 @@ extends StaticBody2D
 @onready var sprite = $Sprite2D
 @onready var collision = $CollisionShape2D
 
+@onready var health_component = $HealthComponent
 @onready var building_shake_component = $BuildingShake
 @onready var build_sound = $AudioStreamPlayer2D
 
@@ -52,6 +53,7 @@ func _ready() -> void:
 	
 	building_shake_component.shake()
 	build_sound.play()
+	health_component.health_depleted.connect(_on_building_destroyed)
 
 
 func _update_sprite() -> void:
@@ -63,3 +65,10 @@ func _update_sprite() -> void:
 	
 	var mask = (up as int) | ((right as int) << 1) | ((down as int) << 2) | ((left as int) << 3)
 	$Sprite2D.frame = FRAME_MAP.get(mask, 12)
+
+
+func _on_building_destroyed() -> void:
+	var grid_pos = GridHelper.world_to_grid(global_position)
+	BuildManager.unmark_cell_occupied(grid_pos, grid_size)
+	queue_free()
+	print("Wall destroyed!")
